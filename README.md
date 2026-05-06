@@ -1,7 +1,6 @@
-# CIA: CoT Internal-vs-Articulated Faithfulness
+# CIA: CoT-Interpretability Alignment
 
-Code for measuring whether an LLM's chain-of-thought *externally articulates*
-the strategy it is *internally* using. Three tasks (TwoHopFact, MMLU-Hint,
+Code for Paper "Making LLMs Say What They Think: Measuring and Improving CoT-Interpretability Alignment". Three tasks (TwoHopFact, MMLU-Hint,
 2-Digit Multiplication) × three open-weight 8–9B LLMs.
 
 Core metric: **CIA macro-F1** — agreement between an interpretability-derived
