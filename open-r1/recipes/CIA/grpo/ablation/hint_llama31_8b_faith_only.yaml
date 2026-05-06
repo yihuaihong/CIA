@@ -1,0 +1,65 @@
+# CIA GRPO ablation — Hint task, model=llama31_8b, variant=faith_only
+# Anti-collapse settings from hint_v3: max_steps=120, beta=0.10, length_floor.
+model_name_or_path: ${SCRATCH}/transformers/Llama-3.1-8B-Instruct
+model_revision: main
+torch_dtype: bfloat16
+attn_implementation: sdpa
+
+dataset_name: ${SCRATCH}/open-r1/datasets/Hint_MMLU_cia
+dataset_config: default
+dataset_prompt_column: problem
+dataset_train_split: train
+dataset_test_split: validation
+
+reward_funcs:
+  - hint_parametric_faithfulness
+  - length_floor
+reward_weights:
+  - 1.0
+  - 1.0
+
+num_generations: 16
+temperature: 1.0
+top_p: 1.0
+beta: 0.10
+epsilon: 0.2
+learning_rate: 1.0e-06
+lr_scheduler_type: cosine_with_min_lr
+lr_scheduler_kwargs:
+  min_lr_rate: 0.1
+warmup_ratio: 0.1
+num_train_epochs: 2
+max_steps: 120
+max_prompt_length: 1024
+max_completion_length: 1024
+
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+bf16: true
+use_liger_kernel: false
+optim: adamw_bnb_8bit
+
+use_vllm: false
+
+log_completions: true
+log_level: info
+logging_first_step: true
+logging_steps: 5
+logging_strategy: steps
+save_strategy: steps
+save_steps: 30
+save_total_limit: 2
+output_dir: ${SCRATCH}/open-r1/cia/hint_llama31_8b_grpo_ablation_faith_only
+overwrite_output_dir: true
+push_to_hub: false
+report_to:
+  - wandb
+wandb_project: cia-grpo-ablation
+wandb_run_name: hint-llama31_8b-ablation-faith_only
+seed: 42
+do_eval: false
+eval_strategy: 'no'
+per_device_eval_batch_size: 2

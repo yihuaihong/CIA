@@ -1,0 +1,22 @@
+# Core
+torch>=2.4
+transformers>=4.45
+datasets>=2.20
+accelerate>=0.34
+deepspeed>=0.15
+trl>=0.11
+jsonlines
+numpy
+pandas
+matplotlib
+
+# Probe & eval
+scikit-learn
+tqdm
+
+# AI labeling (hint task — pick one)
+openai>=1.0    # also used for DeepSeek (OpenAI-compatible API)
+google-generativeai
+
+# Plotting / notebooks
+jupyter
