@@ -1,4 +1,4 @@
-# CIA: CoT-Interpretability Alignment
+# CoT-Interpretability Alignment (CIA)
 
 Code for Paper "Making LLMs Say What They Think: Measuring and Improving CoT-Interpretability Alignment". Three tasks (TwoHopFact, MMLU-Hint,
 2-Digit Multiplication) × three open-weight 8–9B LLMs.
